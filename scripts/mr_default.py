@@ -30,12 +30,12 @@ if __name__ == "__main__":
     output = []
     for path in args.inputs:
         print 'path: ', path
-        os.system("aws s3 cp {0}/sample_file_multiple_lines.txt {1}".format(path, tmp_file))
+        os.system("aws s3 cp {0}sample_file_multiple_lines.txt {1}".format(path, tmp_file))
         lines, chars = get_file_counts(tmp_file, path, args.lines_only)
         output.append("{0},{1},{2}".format(lines, chars, path))
     with open(tmp_file,'w') as f:
         for line in output:
             print >> f, line
-    os.system("aws s3 cp {0} {1}/counts.txt".format(tmp_file, args.output_dir))
+    os.system("aws s3 cp {0} {1}counts.txt".format(tmp_file, args.output_dir))
         
 
